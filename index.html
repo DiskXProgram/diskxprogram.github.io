@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiskX Service Utility</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --text-main: #e0e0e0;
+            --text-dim: #888888;
+            --accent: #d4af37;
+            --border: #2a2a2a;
+            --panel: #0a0a0a;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 1200px;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; 
+            gap: 60px;
+        }
+
+        .content-side {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0 0 10px 0;
+        }
+
+        .version-info {
+            color: var(--text-dim);
+            font-family: monospace;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin: 30px 0 15px 0;
+            letter-spacing: 1px;
+        }
+
+        p { margin-bottom: 20px; color: #ccc; }
+
+        ul {
+            padding-left: 18px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        li { margin-bottom: 10px; }
+
+        .download-area {
+            margin-top: auto;
+            padding: 30px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-download {
+            background: var(--accent);
+            color: #000;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .btn-download:hover { background: #fff; }
+
+        .photo-side {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .photo-side img {
+            width: 100%;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s;
+        }
+
+        .photo-side img:hover {
+            border-color: var(--accent);
+            transform: translateX(-5px);
+        }
+
+        #lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        #lightbox img { max-width: 90%; max-height: 90%; border: 1px solid var(--accent); }
+
+        footer {
+            grid-column: span 2;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 11px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 900px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .photo-side { order: -1; flex-direction: row; overflow-x: auto; }
+            .photo-side img { width: 250px; }
+            footer { flex-direction: column; align-items: flex-start; }
+            .footer-links a { margin-left: 0; margin-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="content-side">
+        <h1>DiskX Utility</h1>
+        <div class="version-info">BUILD_1.3.0 // STATUS: STABLE</div>
+        <div class="divider"></div>
+
+        <h2>Назначение</h2>
+        <p>Инструмент для мониторинга физических накопителей и оптимизации дискового пространства. Программа позволяет проводить глубокий аудит файловой структуры и автоматизировать удаление системного кэша.</p>
+
+        <h2>Функциональные возможности</h2>
+        <ul>
+            <li><b>Disk Health:</b> Чтение параметров состояния дисков и определение типа носителя.</li>
+            <li><b>Space Audit:</b> Поиск объектов критического объема и выявление идентичных файлов.</li>
+            <li><b>System Cleanup:</b> Очистка временных директорий и системных областей хранения временных данных.</li>
+            <li><b>Adaptive UI:</b> Поддержка режимов высокой контрастности для работы в различных условиях освещения.</li>
+        </ul>
+
+        <h2>Технические параметры</h2>
+        <ul>
+            <li>Совместимость: Windows 10, Windows 11.</li>
+            <li>Тип поставки: Установочный пакет (Installer).</li>
+            <li>Требования: Для доступа к аппаратным данным требуются права локального администратора.</li>
+        </ul>
+
+        <div class="download-area">
+            <a href="DiskX Setup.exe" download class="btn-download">Скачать DiskX Setup.exe</a>
+            <div style="font-size: 11px; color: var(--text-dim); text-align: center;">
+                Размер файла: 60 МБ // Цифровая подпись подтверждена
+            </div>
+        </div>
+    </div>
+
+    <div class="photo-side">
+        <img src="photos/screen1.jpg" alt="Screen 1" onclick="openFull(this.src)">
+        <img src="photos/screen2.jpg" alt="Screen 2" onclick="openFull(this.src)">
+        <img src="photos/screen3.jpg" alt="Screen 3" onclick="openFull(this.src)">
+    </div>
+
+    <footer>
+        <div>V-ENGINEES TEAM // 2026 // RELEASE_ID: 8842</div>
+        <div class="footer-links">
+            <a href="mailto:diskxteam@gmail.com">diskxteam@gmail.com</a>
+            <a href="license.html">Лицензионное соглашение</a>
+        </div>
+    </footer>
+</div>
+
+<div id="lightbox" onclick="this.style.display='none'">
+    <img id="lb-img" src="">
+</div>
+
+<script>
+    function openFull(src) {
+        document.getElementById('lb-img').src = src;
+        document.getElementById('lightbox').style.display = 'flex';
+    }
+</script>
+
+</body>
+</html>
